@@ -31,7 +31,7 @@ then
 else
 	echo "deployment failed"
 fi
-comments
+
 
 read -p "Enter the server status :" server_status
 
@@ -59,3 +59,39 @@ stop)
 esac
 
 
+
+read -p "Enter the CPU usage :%" usage
+
+if [ $usage -ge 90 ]
+then 
+	echo "Alert! the usage is high"
+
+elif [ $usage -ge 70 ]
+then
+	echo "Warning!"
+
+else
+	echo "CPU running failed"
+fi
+
+comments
+
+read -p "Enter the no :" no
+case $no in
+
+1)
+	echo "You entered 1"
+	;;
+2)
+	echo "You entered 2"
+	;;
+3)
+	echo "You entered 3"
+	;;
+4)
+	echo "You entered 4"
+	;;
+*)
+	echo "invalid input"
+	;;
+esac

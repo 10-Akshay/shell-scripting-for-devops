@@ -25,7 +25,7 @@ else
 	echo "instead of 0,enter something else"
 fi
 
-comments
+
 
 read -p "Enter the no :" n
 
@@ -40,5 +40,35 @@ else
 	echo "number is odd"
 fi
 
+
+
+
+read -p "Enter the no :" n
+if (( $n % 2 == 0 ))
+then 
+	for (( i=0; i<=10; i++ ))
+	do
+		echo "Number is even"
+	done
+else
+	echo "Number is odd"
+fi
+
+
+
+read -p "Enter the no :" num
+
+if (($num > 0 && $num % 2 == 0 ))
+then
+	while [ $num -lt 10 ]
+	do
+		echo "Yes"
+		num=$((num + 1))
+	done
+else
+	echo "No"
+fi
+
+comments
 
 

@@ -22,7 +22,7 @@ else
 
 	sudo apt update -y
 
-	if ( $? != 0 )
+	if [ $? -ne 0 ]
 	then
 		echo " Package update failed"
 	 	exit 1
@@ -30,7 +30,7 @@ else
 
 	 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 
-	 if ( $? !=  0)
+	 if [ $? -ne  0 ]
 	 then 
 		 echo " AWS CLI download failed"
 		 exit 1
@@ -38,9 +38,16 @@ else
 
 	 unzip awscliv2.zip
 
+	 if [ $? -ne 0 ]
+	 then
+		 echo "Extraction failed"
+		 exit 1
+	 fi
+
+
 	 sudo ./aws/install
 		
-	 if ( $? != 0 )
+	 if [ $? -ne 0 ]
 	 then
 		echo "AWS CLI installation failed"
 		exit 1
@@ -56,7 +63,7 @@ echo "Checking AWS Configuration"
 
 	aws sts get-caller-identity > /dev/null 2>&1
 	
-	if ( $? != 0 )
+	if [ $? -ne 0 ]
 	then
 		echo "AWS configuration failed"
 		echo "Run this command :"
@@ -81,7 +88,7 @@ INSTANCE_ID=$(aws ec2 run-instances \
 --query "Instances[0].InstanceId" \
 --output text)
 
-if ( $? != 0 )
+if [ $? -ne 0 ]
 then
     echo "EC2 launch failed"
     exit 1
@@ -102,7 +109,7 @@ STATUS=$(aws ec2 describe-instances \
 --query "Reservations[*].Instances[*].State.Name" \
 --output text)
 
-if ( $? != 0 )
+if [ $? -ne 0 ]
 then
     echo "Failed to fetch instance status"
     exit 1
